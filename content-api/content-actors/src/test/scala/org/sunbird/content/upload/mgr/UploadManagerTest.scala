@@ -45,7 +45,6 @@ class UploadManagerTest extends FlatSpec with Matchers with MockFactory {
 		assert(null != response)
 		assert("OK" == response.getResponseCode.toString)
 		assert(result.get("identifier").toString.equals("do_1234"))
-		assert(result.get("node_id").toString.equals("do_1234"))
 		assert(result.get("artifactUrl").toString.equals(jpegUrl))
 	}
 
@@ -62,8 +61,7 @@ class UploadManagerTest extends FlatSpec with Matchers with MockFactory {
 		val result = response.getResult
 		assert(null != response)
 		assert("OK" == response.getResponseCode.toString)
-		assert(result.size() == 5)
-		assert(result.get("node_id").toString.equals("do_5678"))
+		assert(result.size() == 4)
 		assert(result.get("identifier").toString.equals("do_5678"))
 		assert(result.get("artifactUrl").toString.equals(pdfUrl))
 		assert(result.get("content_url").toString.equals(pdfUrl))

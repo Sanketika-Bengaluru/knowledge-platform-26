@@ -401,7 +401,7 @@ object DIALManager {
 		updateReq.getContext.put("schemaName", "dialcode")
 		updateReq.getContext.put("objectType", request.getObjectType)
 		val updateMap = new util.HashMap[String, AnyRef]()
-		updateMap.put("identifier", rspObj.get("node_id"))
+		updateMap.put("identifier", rspObj.get("identifier"))
 		updateMap.put("status",Int.box(0) )
 		updateReq.setRequest(updateMap)
 		updateReq.putAll(batch)
@@ -425,12 +425,12 @@ object DIALManager {
 
 		event.put("eid", DIALConstants.DIAL_EID)
 		event.put("processId", processId)
-		event.put("objectId", Option(rspObj.get("node_id")).getOrElse(channel))
+		event.put("objectId", Option(rspObj.get("identifier")).getOrElse(channel))
 		event.put("dialcodes", dialCodes)
 		val storageMap = new util.HashMap[String, Any]()
 		storageMap.put("container", DIAL_CONTAINER)
 		storageMap.put("path", if (publisher.nonEmpty) channel+"/"+ publisher.getOrElse("") +"/" else s"$channel/")
-		storageMap.put("filename", Option(rspObj.get("node_id")).get + "_" + System.currentTimeMillis())
+		storageMap.put("filename", Option(rspObj.get("identifier")).get + "_" + System.currentTimeMillis())
 		event.put("storage", storageMap)
 		event.put("config", config.toMap.asJava)
 		val topic: String = DIALTOPIC
@@ -605,7 +605,7 @@ object DIALManager {
 
 	def getDIALReserveUpdateResponse(response: Response, count: Integer, contentId: String, node: Node): Response = {
 		response.getResult.put(DIALConstants.COUNT, count)
-		response.getResult.put(ContentConstants.NODE_ID, contentId)
+		response.getResult.put(ContentConstants.IDENTIFIER, contentId)
 		val reservDialCodes: String = node.getMetadata.get(DIALConstants.RESERVED_DIALCODES).asInstanceOf[String]
 		if(StringUtils.isNotBlank(reservDialCodes))
 			response.getResult.put(DIALConstants.RESERVED_DIALCODES, JsonUtils.deserialize(reservDialCodes, classOf[util.Map[String, Integer]]))

@@ -39,7 +39,7 @@ class CategoryActor @Inject()(implicit oec: OntologyEngineContext) extends BaseA
     RedisCache.delete("masterCategories")
     FrameworkManager.validateTranslationMap(request)
     DataNode.create(request).map(node => {
-      ResponseHandler.OK.put(Constants.IDENTIFIER, node.getIdentifier).put(Constants.NODE_ID, node.getIdentifier)
+      ResponseHandler.OK.put(Constants.IDENTIFIER, node.getIdentifier)
     })
   }
 
@@ -56,7 +56,7 @@ class CategoryActor @Inject()(implicit oec: OntologyEngineContext) extends BaseA
     RedisCache.delete("masterCategories")
     FrameworkManager.validateTranslationMap(request)
     DataNode.update(request).map(node => {
-      ResponseHandler.OK.put(Constants.IDENTIFIER, node.getIdentifier).put(Constants.NODE_ID, node.getIdentifier)
+      ResponseHandler.OK.put(Constants.IDENTIFIER, node.getIdentifier)
     })
   }
 
@@ -64,7 +64,7 @@ class CategoryActor @Inject()(implicit oec: OntologyEngineContext) extends BaseA
     request.getRequest.put("status", "Retired")
     RedisCache.delete("masterCategories")
     DataNode.update(request).map(node => {
-      ResponseHandler.OK.put(Constants.IDENTIFIER, node.getIdentifier).put(Constants.NODE_ID, node.getIdentifier)
+      ResponseHandler.OK.put(Constants.IDENTIFIER, node.getIdentifier)
     })
   }
 }

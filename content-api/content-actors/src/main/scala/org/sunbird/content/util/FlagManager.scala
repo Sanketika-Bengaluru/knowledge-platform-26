@@ -52,7 +52,6 @@ object FlagManager {
       updateContentFlag(node, request).map(flaggedNode => {
         val response = ResponseHandler.OK
         val identifier: String = flaggedNode.getIdentifier
-        response.put("node_id", identifier)
         response.put("identifier", identifier)
         response.put("versionKey", flaggedNode.getMetadata.get("versionKey"))
         response

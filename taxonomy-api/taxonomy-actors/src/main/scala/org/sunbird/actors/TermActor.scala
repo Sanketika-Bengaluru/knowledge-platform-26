@@ -75,25 +75,25 @@ class TermActor @Inject()(implicit oec: OntologyEngineContext) extends BaseActor
 
   private def createResponse(codeError: Int, serverError: Int, identifiers: util.ArrayList[String], size: Int): Future[Response] = {
     if (codeError == 0 && serverError == 0) {
-      Future(ResponseHandler.OK.put(Constants.NODE_ID, identifiers))
+      Future(ResponseHandler.OK.put(Constants.IDENTIFIER, identifiers))
     }
     else if (codeError > 0 && serverError == 0) {
       if (codeError == size) {
         Future(ResponseHandler.ERROR(ResponseCode.CLIENT_ERROR, "ERR_TERM_CODE_REQUIRED", "Unique code is required for Term"))
       } else {
-        Future(ResponseHandler.ERROR(ResponseCode.PARTIAL_SUCCESS, "ERR_TERM_CODE_REQUIRED", "Unique code is required for Term", Constants.NODE_ID, identifiers))
+        Future(ResponseHandler.ERROR(ResponseCode.PARTIAL_SUCCESS, "ERR_TERM_CODE_REQUIRED", "Unique code is required for Term", Constants.IDENTIFIER, identifiers))
       }
     } else if (codeError == 0 && serverError > 0) {
       if (serverError == size) {
         Future(ResponseHandler.ERROR(ResponseCode.SERVER_ERROR, ResponseCode.SERVER_ERROR.name, "Internal Server Error"))
       } else {
-        Future(ResponseHandler.ERROR(ResponseCode.PARTIAL_SUCCESS, ResponseCode.PARTIAL_SUCCESS.name, "Partial Success with Internal Error", Constants.NODE_ID, identifiers))
+        Future(ResponseHandler.ERROR(ResponseCode.PARTIAL_SUCCESS, ResponseCode.PARTIAL_SUCCESS.name, "Partial Success with Internal Error", Constants.IDENTIFIER, identifiers))
       }
     } else {
       if ((codeError + serverError) == size) {
         Future(ResponseHandler.ERROR(ResponseCode.SERVER_ERROR, ResponseCode.SERVER_ERROR.name, "Internal Server Error and also Invalid Request"))
       } else {
-        Future(ResponseHandler.ERROR(ResponseCode.PARTIAL_SUCCESS, ResponseCode.PARTIAL_SUCCESS.name, "Internal Server Error and also Invalid Request", Constants.NODE_ID, identifiers))
+        Future(ResponseHandler.ERROR(ResponseCode.PARTIAL_SUCCESS, ResponseCode.PARTIAL_SUCCESS.name, "Internal Server Error and also Invalid Request", Constants.IDENTIFIER, identifiers))
       }
     }
 }

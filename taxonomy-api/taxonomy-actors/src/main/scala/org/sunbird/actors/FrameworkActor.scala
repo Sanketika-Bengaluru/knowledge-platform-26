@@ -58,7 +58,7 @@ class FrameworkActor @Inject()(implicit oec: OntologyEngineContext) extends Base
         if (null != node && StringUtils.equalsAnyIgnoreCase(node.getIdentifier, channel)) {
           FrameworkManager.validateTranslationMap(request)
           DataNode.create(request).map(frameNode => {
-            ResponseHandler.OK.put(Constants.NODE_ID, frameNode.getIdentifier).put("versionKey", frameNode.getMetadata.get("versionKey"))
+            ResponseHandler.OK.put(Constants.IDENTIFIER, frameNode.getIdentifier).put("versionKey", frameNode.getMetadata.get("versionKey"))
           })
         } else throw new ClientException("ERR_INVALID_CHANNEL_ID", "Please provide valid channel identifier")
       }).flatMap(f => f)
@@ -109,7 +109,7 @@ class FrameworkActor @Inject()(implicit oec: OntologyEngineContext) extends Base
   private def update(request: Request): Future[Response] = {
     RequestUtil.restrictProperties(request)
     DataNode.update(request).map(node => {
-      ResponseHandler.OK.put("node_id", node.getIdentifier).put("versionKey", node.getMetadata.get("versionKey"))
+      ResponseHandler.OK.put("identifier", node.getIdentifier).put("versionKey", node.getMetadata.get("versionKey"))
     })
   }
 
@@ -117,7 +117,7 @@ class FrameworkActor @Inject()(implicit oec: OntologyEngineContext) extends Base
   private def retire(request: Request): Future[Response] = {
     request.getRequest.put("status", "Retired")
     DataNode.update(request).map(node => {
-      ResponseHandler.OK.put("node_id", node.getIdentifier).put("identifier", node.getIdentifier)
+      ResponseHandler.OK.put("identifier", node.getIdentifier)
     })
   }
 

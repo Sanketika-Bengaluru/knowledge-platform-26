@@ -59,7 +59,7 @@ object CopyManager {
             }
             copiedNodeFuture.map(copiedNode => {
                 val response = ResponseHandler.OK()
-                response.put("node_id", new util.HashMap[String, AnyRef](){{
+                response.put("identifier", new util.HashMap[String, AnyRef](){{
                     put(node.getIdentifier, copiedNode.getIdentifier)
                 }})
                 response.put(ContentConstants.VERSION_KEY, copiedNode.getMetadata.get(ContentConstants.VERSION_KEY))

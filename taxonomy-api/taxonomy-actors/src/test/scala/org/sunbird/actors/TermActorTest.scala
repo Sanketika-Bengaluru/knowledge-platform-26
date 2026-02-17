@@ -50,7 +50,7 @@ class TermActorTest extends BaseSpec with MockFactory{
     request.putAll(mutable.Map[String, AnyRef]("term"-> mutable.Map[String, AnyRef]("code"->"class1", "name"->"Class1","description"->"Class1").asJava, "framework"->"NCF", "category"->"board").asJava)
     request.setOperation(Constants.CREATE_TERM)
     val response = callActor(request, Props(new TermActor()))
-    assert(response.get(Constants.NODE_ID).equals(new util.ArrayList[String]() { add("ncf_board_class1") }))
+    assert(response.get(Constants.IDENTIFIER).equals(new util.ArrayList[String]() { add("ncf_board_class1") }))
   }
 
   it should "throw exception if categoryId and identifier are same" in {

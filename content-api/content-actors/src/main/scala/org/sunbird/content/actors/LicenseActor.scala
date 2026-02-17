@@ -37,7 +37,7 @@ class LicenseActor @Inject() (implicit oec: OntologyEngineContext) extends BaseA
         if (request.getRequest.containsKey("identifier")) throw new ClientException("ERR_NAME_SET_AS_IDENTIFIER", "name will be set as identifier")
         if (request.getRequest.containsKey("name")) request.getRequest.put("identifier", Slug.makeSlug(request.getRequest.get("name").asInstanceOf[String]))
         DataNode.create(request).map(node => {
-            ResponseHandler.OK.put("identifier", node.getIdentifier).put("node_id", node.getIdentifier)
+            ResponseHandler.OK.put("identifier", node.getIdentifier)
         })
     }
 
@@ -57,7 +57,7 @@ class LicenseActor @Inject() (implicit oec: OntologyEngineContext) extends BaseA
         RequestUtil.restrictProperties(request)
         request.getRequest.put("status", "Live")
         DataNode.update(request).map(node => {
-            ResponseHandler.OK.put("node_id", node.getIdentifier).put("identifier", node.getIdentifier)
+            ResponseHandler.OK.put("identifier", node.getIdentifier)
         })
     }
 
@@ -65,7 +65,7 @@ class LicenseActor @Inject() (implicit oec: OntologyEngineContext) extends BaseA
     private def retire(request: Request): Future[Response] = {
         request.getRequest.put("status", "Retired")
         DataNode.update(request).map(node => {
-            ResponseHandler.OK.put("node_id", node.getIdentifier).put("identifier", node.getIdentifier)
+            ResponseHandler.OK.put("identifier", node.getIdentifier)
         })
     }
 

@@ -44,7 +44,6 @@ object RetireManager {
                 futureList.map(f => {
                     val response = ResponseHandler.OK()
                     response.put(ContentConstants.IDENTIFIER, request.get(ContentConstants.IDENTIFIER))
-                    response.put("node_id", request.get(ContentConstants.IDENTIFIER))
                 })
             }
         })

@@ -232,7 +232,7 @@ object FrameworkManager {
             }
           }
         })
-        ResponseHandler.OK.put("node_id", frameworkId)
+        ResponseHandler.OK.put("identifier", frameworkId)
       })
     }).flatMap(f => f) recoverWith { case e: CompletionException => throw e.getCause }
   }

@@ -29,7 +29,7 @@ class TestAssetManager extends AsyncFlatSpec with Matchers with AsyncMockFactory
     AssetCopyManager.copy(getCopyRequest()).map(resp => {
       assert(resp != null)
       assert(resp.getResponseCode == ResponseCode.OK)
-      assert(resp.getResult.get("node_id").asInstanceOf[util.HashMap[String, AnyRef]].get("do_1234").asInstanceOf[String] == "do_1234_copy")
+      assert(resp.getResult.get("identifier").asInstanceOf[util.HashMap[String, AnyRef]].get("do_1234").asInstanceOf[String] == "do_1234_copy")
     })
   }
 

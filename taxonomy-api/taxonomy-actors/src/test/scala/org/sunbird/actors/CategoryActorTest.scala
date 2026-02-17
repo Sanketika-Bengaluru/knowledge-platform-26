@@ -44,7 +44,7 @@ class CategoryActorTest extends BaseSpec with MockFactory{
           val response = callActor(request, Props(new CategoryActor()))
           assert("successful".equals(response.getParams.getStatus))
           assert(response.get(Constants.IDENTIFIER).equals("state"))
-          assert(response.get(Constants.NODE_ID).equals("state"))
+          assert(response.get(Constants.IDENTIFIER).equals("state"))
       }
 
       it should "throw exception if status sent in request" in {

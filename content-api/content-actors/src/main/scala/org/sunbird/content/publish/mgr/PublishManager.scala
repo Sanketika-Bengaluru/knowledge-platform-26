@@ -40,7 +40,7 @@ object PublishManager {
 			param.setStatus(StatusType.successful.name)
 			response.setParams(param)
 			response.put(ContentConstants.PUBLISH_STATUS, s"Publish Event for Content Id '${node.getIdentifier}' is pushed Successfully!")
-			response.put(ContentConstants.NODE_ID, node.getIdentifier)
+			response.put(ContentConstants.IDENTIFIER, node.getIdentifier)
 
 			Future(response)
 		}).flatMap(f => f)
