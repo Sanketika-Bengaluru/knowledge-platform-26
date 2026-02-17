@@ -38,7 +38,7 @@ public class HttpUtilTest {
 
 	@Before
 	public void setup() throws Exception {
-		String body = "{\"id\":\"api.content.create\",\"ver\":\"3.0\",\"ts\":\"2020-04-19T21:54:12ZZ\",\"params\":{\"resmsgid\":\"47f07524-3246-4731-9eae-17bab692d3a9\",\"msgid\":null,\"err\":null,\"status\":\"successful\",\"errmsg\":null},\"responseCode\":\"OK\",\"result\":{\"identifier\":\"do_411300343400543846413\",\"node_id\":\"do_411300343400543846413\",\"versionKey\":\"1587333252620\"}}";
+		String body = "{\"id\":\"api.content.create\",\"ver\":\"3.0\",\"ts\":\"2020-04-19T21:54:12ZZ\",\"params\":{\"resmsgid\":\"47f07524-3246-4731-9eae-17bab692d3a9\",\"msgid\":null,\"err\":null,\"status\":\"successful\",\"errmsg\":null},\"responseCode\":\"OK\",\"result\":{\"identifier\":\"do_411300343400543846413\",\"versionKey\":\"1587333252620\"}}";
 		mockStatic(HttpClientHelper.class);
 		HttpResponseFactory factory = new DefaultHttpResponseFactory();
 		org.apache.http.HttpResponse response = factory.newHttpResponse(new BasicStatusLine(HttpVersion.HTTP_1_1, HttpStatus.SC_OK, null), null);

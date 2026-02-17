@@ -129,7 +129,6 @@ public class ResponseHandlerTest {
                 "    \"responseCode\": \"OK\",\n" +
                 "    \"result\": {\n" +
                 "        \"identifier\": \"do_1131191412394393601663\",\n" +
-                "        \"node_id\": \"do_1131191412394393601663\",\n" +
                 "        \"versionKey\": \"1601457670834\"\n" +
                 "    }\n" +
                 "}", Response.class);    }

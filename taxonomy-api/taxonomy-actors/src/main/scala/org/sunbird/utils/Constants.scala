@@ -6,7 +6,6 @@ object Constants {
     val UPDATE_OBJECT_CATEGORY: String = "updateObjectCategory"
     val IDENTIFIER: String = "identifier"
     val NAME: String = "name"
-    val NODE_ID: String = "node_id"
     val CATEGORY_PREFIX: String = "obj-cat:"
     val VERSION: String = "version"
     val SCHEMA_NAME: String = "schemaName"

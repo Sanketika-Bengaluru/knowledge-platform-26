@@ -46,7 +46,6 @@ object ContentConstants {
     val FLAGGED: String = "Flagged"
     val FLAG_DRAFT: String = "FlagDraft"
     val RETIRED: String = "Retired"
-    val NODE_ID: String = "node_id"
     val VERSIONING: String = "versioning"
     val DISABLE: String = "disable"
     val LAST_STATUS_CHANGED_ON: String = "lastStatusChangedOn"
