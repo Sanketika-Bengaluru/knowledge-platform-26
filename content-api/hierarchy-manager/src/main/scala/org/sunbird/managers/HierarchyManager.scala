@@ -731,7 +731,9 @@ object HierarchyManager {
                     case _: Exception => List()
                 }
             case a: Array[String] => a.toList
-            case l: java.util.List[_] => l.asInstanceOf[java.util.List[String]].asScala.toList
+            case a: Array[_] => a.map(_.toString).toList
+            case l: java.util.List[_] => l.asScala.map(_.toString).toList
+            case l: scala.collection.Seq[_] => l.map(_.toString).toList
             case _ => List()
         }
     }
