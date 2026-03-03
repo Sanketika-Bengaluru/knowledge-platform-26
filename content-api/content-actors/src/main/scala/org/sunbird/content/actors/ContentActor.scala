@@ -66,7 +66,7 @@ class ContentActor @Inject() (implicit oec: OntologyEngineContext, ss: StorageSe
 		populateDefaultersForCreation(request).flatMap(_ => {
 			RequestUtil.restrictProperties(request)
 			DataNode.create(request, dataModifier).map(node => {
-				ResponseHandler.OK.put(ContentConstants.IDENTIFIER, node.getIdentifier).put("node_id", node.getIdentifier)
+				ResponseHandler.OK.put(ContentConstants.IDENTIFIER, node.getIdentifier)
 					.put("versionKey", node.getMetadata.get("versionKey"))
 			})
 		})
@@ -141,7 +141,7 @@ class ContentActor @Inject() (implicit oec: OntologyEngineContext, ss: StorageSe
 		RequestUtil.restrictProperties(request)
 		DataNode.update(request, dataModifier).map(node => {
 			val identifier: String = node.getIdentifier.replace(".img", "")
-			ResponseHandler.OK.put("node_id", identifier).put(ContentConstants.IDENTIFIER, identifier)
+			ResponseHandler.OK.put(ContentConstants.IDENTIFIER, identifier)
 				.put("versionKey", node.getMetadata.get("versionKey"))
 		})
 	}
@@ -383,7 +383,7 @@ class ContentActor @Inject() (implicit oec: OntologyEngineContext, ss: StorageSe
 			RequestUtil.restrictProperties(request)
 			DataNode.update(request).map(node => {
 				val identifier: String = node.getIdentifier.replace(".img", "")
-				ResponseHandler.OK.put("node_id", identifier).put(ContentConstants.IDENTIFIER, identifier)
+				ResponseHandler.OK.put(ContentConstants.IDENTIFIER, identifier)
 			})
 		}).flatMap(f => f)
 	}

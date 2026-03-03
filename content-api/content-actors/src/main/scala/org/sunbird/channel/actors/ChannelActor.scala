@@ -41,7 +41,7 @@ class ChannelActor @Inject() (implicit oec: OntologyEngineContext) extends BaseA
         ChannelManager.validateObjectCategory(request)
         DataNode.create(request).map(node => {
             ChannelManager.channelLicenseCache(request, node.getIdentifier)
-            ResponseHandler.OK.put("identifier", node.getIdentifier).put("node_id", node.getIdentifier)
+            ResponseHandler.OK.put("identifier", node.getIdentifier)
         })
     }
 
@@ -65,7 +65,7 @@ class ChannelActor @Inject() (implicit oec: OntologyEngineContext) extends BaseA
         DataNode.update(request).map(node => {
             val identifier: String = node.getIdentifier
             ChannelManager.channelLicenseCache(request, identifier)
-            ResponseHandler.OK.put("node_id", identifier).put("identifier", identifier)
+            ResponseHandler.OK.put("identifier", identifier)
         })
     }
 
@@ -73,7 +73,7 @@ class ChannelActor @Inject() (implicit oec: OntologyEngineContext) extends BaseA
         request.getRequest.put("status", "Retired")
         DataNode.update(request).map(node => {
             val identifier: String = node.getIdentifier
-            ResponseHandler.OK.put("node_id", identifier).put("identifier", identifier)
+            ResponseHandler.OK.put("identifier", identifier)
         })
     }
 

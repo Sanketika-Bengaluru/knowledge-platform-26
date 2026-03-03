@@ -41,7 +41,7 @@ class EventSetActor @Inject()(implicit oec: OntologyEngineContext, ss: StorageSe
       .map(nodes => updateRequestWithChildRelations(request, originalRequestContent, nodes))
       .flatMap(req => {
         DataNode.create(req).map(node => {
-          ResponseHandler.OK.put("identifier", node.getIdentifier).put("node_id", node.getIdentifier)
+          ResponseHandler.OK.put("identifier", node.getIdentifier)
             .put("versionKey", node.getMetadata.get("versionKey"))
         })
       }).recoverWith {
@@ -66,7 +66,7 @@ class EventSetActor @Inject()(implicit oec: OntologyEngineContext, ss: StorageSe
         }).flatMap(req =>
           DataNode.update(req).map(node => {
             val identifier: String = node.getIdentifier.replace(".img", "")
-            ResponseHandler.OK.put("node_id", identifier).put("identifier", identifier)
+            ResponseHandler.OK.put("identifier", identifier)
               .put("versionKey", node.getMetadata.get("versionKey"))
           })
         )
@@ -91,7 +91,7 @@ class EventSetActor @Inject()(implicit oec: OntologyEngineContext, ss: StorageSe
         request.put("status", "Live")
         DataNode.update(request).map(updateNode => {
           val identifier: String = updateNode.getIdentifier.replace(".img", "")
-          ResponseHandler.OK.put("node_id", identifier).put("identifier", identifier)
+          ResponseHandler.OK.put("identifier", identifier)
             .put("versionKey", updateNode.getMetadata.get("versionKey"))
         })
       }

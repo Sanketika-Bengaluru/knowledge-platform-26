@@ -27,7 +27,6 @@ object AcceptFlagManager {
         createOrUpdateImageNode(request, node).map(imgNode => {
           updateOriginalNode(request, node).map(response => {
             if (!ResponseHandler.checkError(response)) {
-              response.put(ContentConstants.NODE_ID, node.getIdentifier)
               response.put(ContentConstants.IDENTIFIER, node.getIdentifier)
               response.put(ContentConstants.VERSION_KEY, imgNode.getMetadata.get(ContentConstants.VERSION_KEY))
               response

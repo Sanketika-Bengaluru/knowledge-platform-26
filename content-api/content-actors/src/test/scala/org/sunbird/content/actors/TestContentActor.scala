@@ -407,7 +407,7 @@ class TestContentActor extends BaseSpec with MockFactory {
         request.setOperation("copy")
         val response = callActor(request, Props(new ContentActor()))
         assert("successful".equals(response.getParams.getStatus))
-        assert(response.getResult.containsKey("node_id"))
+        assert(response.getResult.containsKey("identifier"))
         assert("test_321".equals(response.get("versionKey")))
     }
 

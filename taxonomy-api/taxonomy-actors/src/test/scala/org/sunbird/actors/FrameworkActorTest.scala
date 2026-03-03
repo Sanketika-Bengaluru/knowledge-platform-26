@@ -47,7 +47,7 @@ class FrameworkActorTest extends BaseSpec with MockFactory {
     request.setOperation(Constants.CREATE_FRAMEWORK)
     val response = callActor(request, Props(new FrameworkActor()))
     assert("successful".equals(response.getParams.getStatus))
-    assert(response.get(Constants.NODE_ID).equals("framework_test"))
+    assert(response.get(Constants.IDENTIFIER).equals("framework_test"))
   }
 
   it should "throw exception if code is sent empty for 'createFramework' operation" in {
@@ -175,7 +175,7 @@ class FrameworkActorTest extends BaseSpec with MockFactory {
     request.setOperation(Constants.COPY_FRAMEWORK)
     val response = callActor(request, Props(new FrameworkActor()))
     assert("successful".equals(response.getParams.getStatus))
-    assert(response.getResult.containsKey(Constants.NODE_ID))
+    assert(response.getResult.containsKey(Constants.IDENTIFIER))
   }
 
   it should "throw exception if code not sent in the request 'copyFramework' operation" in {
